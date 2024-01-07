@@ -17,6 +17,7 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
+        console.log(data);
         setNotFound(false);
       } else {
         setNotFound(true);
