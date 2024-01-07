@@ -1,6 +1,7 @@
 import React from "react";
 import { WiDayWindy } from "react-icons/wi";
-
+import { CiTempHigh } from "react-icons/ci";
+import { WiHumidity } from "react-icons/wi";
 const MainDisplay = ({ weatherData, city }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`;
   return (
@@ -10,7 +11,10 @@ const MainDisplay = ({ weatherData, city }) => {
           <div className="first min-w-56 md:mt-16">
             <p>Pressure: {weatherData.main.pressure}</p>
             <p>Pressure: {weatherData.weather[0].icon}</p>
-            <p>Humidity: {weatherData.main.humidity}%</p>
+            <p className="flex gap-0.5 ">
+              <WiHumidity size={33} />
+              Humidity: {weatherData.main.humidity}%
+            </p>
             <p>Max-Temperature: {weatherData.main.temp_max}°C</p>
             <p>Min-Temperature: {weatherData.main.temp_min}°C</p>
           </div>
@@ -21,8 +25,10 @@ const MainDisplay = ({ weatherData, city }) => {
             <div className="text-center">
               <p className="text-6xl font-bold">{weatherData.name}</p>
               <p>{weatherData.weather[0].description}</p>
-              <p>Temperature: {weatherData.main.temp}°C</p>
-              <p>{weatherData.sys.country}</p>
+              <p className="flex justify-center text-4xl font-mono">
+                <CiTempHigh size={48} />
+                {(300 - weatherData.main.temp).toFixed(1)}°C
+              </p>
             </div>
           </div>
           <div className="third min-w-56 gap-4  md:mt-16">
