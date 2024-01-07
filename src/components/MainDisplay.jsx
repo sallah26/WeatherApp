@@ -26,8 +26,8 @@ const MainDisplay = ({ weatherData, city }) => {
             </div>
           </div>
           <div className="third min-w-56 gap-4  md:mt-16">
-            <p>Latitude: {weatherData.coord.lat}</p>
-            <p>Longtude: {weatherData.coord.lon}</p>
+            <p>Latitud: {weatherData.coord.lat}</p>
+            <p>Longtud: {weatherData.coord.lon}</p>
             <p className="flex gap-2 ">
               <WiDayWindy size={33} /> Speed of wind: {weatherData.wind.speed}
               m/s
