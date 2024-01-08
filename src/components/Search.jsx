@@ -28,17 +28,21 @@ const CityWeatherSearch = ({ onCitySelect, notFound }) => {
           Sorry, this city doesn't have data. please select near one!
         </p>
       )}
-      <div className="w-80 h-40 overflow-y-scroll border-2 border-red-300">
+      <div className="min-w-72 h-40 p-2 text-md overflow-y-scroll roundedm-sm border-2 border-slate-600 rounded-xl ">
         <input
           type="text"
-          className="w-52 h-8 bg-slate-800 border-2 rounded-lg text-white"
-          placeholder="Search for a city..."
+          className="w-full outline-none border-0 border-b-2 bg-transparent  border-slate-400 p-1  h-9 bg-slate-800 border-2 text-white"
+          placeholder="Search for the city..."
           value={city}
           onChange={handleCityChange}
         />
-        <ul>
+        <ul className="ml-1 text-sm">
           {suggestedCities.map((suggestedCity, index) => (
-            <li key={index} onClick={() => handleCitySelection(suggestedCity)}>
+            <li
+              key={index}
+              onClick={() => handleCitySelection(suggestedCity)}
+              className="cursor-pointer text-md "
+            >
               {suggestedCity}
             </li>
           ))}

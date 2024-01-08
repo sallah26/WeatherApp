@@ -94,8 +94,8 @@ const MainDisplay = ({ weatherData, city }) => {
             </div>
             <div className="text-center">
               <p className="text-6xl font-bold">{weatherData.name}</p>
-              <p>{weatherData.weather[0].description}</p>
-              <p className="flex justify-center text-4xl font-mono">
+              <p className="mt-1">The condition is like {weatherData.weather[0].description}</p>
+              <p className="flex mt-1 justify-center text-4xl font-mono">
                 <CiTempHigh size={48} />
                 {(300 - weatherData.main.temp).toFixed(1)}°C
               </p>
