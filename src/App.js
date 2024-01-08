@@ -2,6 +2,7 @@ import "./App.css";
 import CityWeatherSearch from "./components/Search";
 import { useState } from "react";
 import MainDisplay from "./components/MainDisplay";
+import Data from "./api/Data";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <>
       <div className="w-full min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20 ">
-        <MainDisplay weatherData={weatherData} city={city} />
+        <MainDisplay weatherData={Data} city={city} />
         <CityWeatherSearch
           onCitySelect={handleCitySelect}
           notFound={notFound}

@@ -49,39 +49,48 @@ const MainDisplay = ({ weatherData, city }) => {
     <div className="">
       {weatherData && (
         <div className="grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-6">
-          <div className="first min-w-56 md:mt-16">
-            <p className="flex  gap-0.5 ">
+          <div className="first flex flex-col gap-3 justify-center min-w-56">
+            <p className="flex items-center  gap-0.5 ">
               <WiMeteor size={33} />
               Pressure: {weatherData.main.pressure}hPa
             </p>
-            <p className="flex mt-2  gap-0.5 ">
+            <p className="flex items-center  gap-0.5 ">
               <WiHumidity size={33} />
               Humidity: {weatherData.main.humidity}%
             </p>
-            <p className="flex mt-2  gap-1 ">
+            <p className="flex items-center  gap-1 ">
               <FaCloud size={27} />
               Cloudness: {weatherData.clouds.all}%
             </p>
-            <p className="flex mt-2  gap-1 ">
+            {/* <p className="flex items-center  gap-1 ">
               <LuCloudRainWind size={28} />
               Rain: Null
             </p>
-            <p className="flex mt-2  gap-1 ">
+            <p className="flex items-center  gap-1 ">
               <CiCloudRainbow size={28} />
               Snow: Null
+            </p> */}
+            <p className="flex items-center gap-1 ">
+              <WiDayWindy size={30} /> Speed of wind: {weatherData.wind.speed}
+              m/s
             </p>
-            <p className="flex mt-2  gap-0.5 ">
+            <p className="flex items-center gap-1 ">
+              <WiDayWindy size={30} />
+              Wind Direction: {weatherData.wind.deg}°
+            </p>
+            <p className="flex items-center  gap-0.5 ">
               <WiLightning size={33} />
               Max-Temperature: {(300 - weatherData.main.temp_max).toFixed(1)}°C
             </p>
-            <p className="flex mt-2  gap-0.5 ">
+            <p className="flex items-center  gap-0.5 ">
               <WiBarometer size={33} />
               Min-Temperature: {(300 - weatherData.main.temp_min).toFixed(1)}°C
             </p>
           </div>
           <div className="second col-start-2 col-span-4 flex flex-col justify-center items-center">
             <div className="relative">
-              <img src={iconUrl} className="-mb-14" alt="icon" width={350} />
+              <FaCloud size={250} className="-mb-1" />
+              {/* <img src={iconUrl} className="-mb-14" alt="icon" width={350} /> */}
             </div>
             <div className="text-center">
               <p className="text-6xl font-bold">{weatherData.name}</p>
@@ -92,28 +101,34 @@ const MainDisplay = ({ weatherData, city }) => {
               </p>
             </div>
           </div>
-          <div className="third min-w-72 gap-4 md:-ml-6  md:mt-1">
-            <p className="flex gap-0.5  ">
+          <div className="third min-w-72 flex flex-col justify-center gap-3 md:-ml-6 ">
+            <p className="flex items-center gap-0.5  ">
               <WiHurricaneWarning size={33} /> Latitude: {weatherData.coord.lat}
             </p>
-            <p className="flex gap-1  mt-2 ">
-              <TbWorldLongitude size={27} /> Longtude: {weatherData.coord.lon}
+            <p className="flex gap-1  items-center">
+              <TbWorldLongitude size={25} /> Longtude: {weatherData.coord.lon}
             </p>
-            <p className="flex gap-1  mt-2 ">
-              <SiOpensearch size={27} /> Sea level: {weatherData.main.sea_level}
+            <p className="flex items-center gap-1  ">
+              <SiOpensearch size={25} /> Sea level: {weatherData.main.sea_level}
               hPa
             </p>
-            <p className="flex gap-1  mt-2">
-              <WiDayWindy size={30} /> Speed of wind: {weatherData.wind.speed}
-              m/s
+            {/* <p className="flex items-center gap-1  "> 
+              <SiOpensearch size={25} />
+              visibility: {weatherData.visibility / 1000}km
             </p>
-            <p className="flex gap-1  mt-2 gpp  also">
-              <FiSunrise size={27} /> Sunrise: {localSunriseString}
+
+            <p className="flex items-center gap-1  ">
+              <SiOpensearch size={25} /> Ground level:{" "}
+              {weatherData.main.grnd_level}
+              hPa
+            </p> */}
+            <p className="flex items-center gap-1 ">
+              <FiSunrise size={25} /> Sunrise: {localSunriseString}
             </p>
-            <p className="flex gap-1  mt-2 gpp">
-              <FiSunset size={27} /> Sunset: {localSunsetString}
+            <p className="flex items-center gap-1 ">
+              <FiSunset size={25} /> Sunset: {localSunsetString}
             </p>
-            <p className="flex gap-1  mt-2 gpp">
+            <p className="flex items-center gap-1 ">
               <MdOutlineCollectionsBookmark size={27} /> Data compiled At:{" "}
               {dataCompiledTime}
             </p>
