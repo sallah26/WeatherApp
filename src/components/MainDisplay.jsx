@@ -7,9 +7,44 @@ import { WiBarometer } from "react-icons/wi";
 import { WiLightning } from "react-icons/wi";
 import { TbWorldLongitude } from "react-icons/tb";
 import { WiHurricaneWarning } from "react-icons/wi";
+import { FaCloud } from "react-icons/fa";
+import { LuCloudRainWind } from "react-icons/lu";
+import { CiCloudRainbow } from "react-icons/ci";
+import { SiOpensearch } from "react-icons/si";
+import { FiSunrise } from "react-icons/fi";
+import { FiSunset } from "react-icons/fi";
+import { MdOutlineCollectionsBookmark } from "react-icons/md";
 
 const MainDisplay = ({ weatherData, city }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`;
+  let dataCompilation = weatherData.dt; //Time of this data been compiled
+  let sunriseUnixTimestamp = weatherData.sys.sunrise; //Sunrise: 1704685350UTC
+  let sunsetUnixTimestamp = weatherData.sys.sunset; // Sunset: 1704727191UTC
+  // Convert UNIX timestamps to milliseconds
+  let dataCompiled = new Date(dataCompilation * 1000);
+  let sunriseDate = new Date(sunriseUnixTimestamp * 1000);
+  let sunsetDate = new Date(sunsetUnixTimestamp * 1000);
+
+  // Assuming a time zone offset for Ethiopian time (in minutes)
+  let timeZoneOffsetInMinutes = +180; // Ethiopia Standard Time (EAT) UTC+3
+
+  // Apply the time zone offset to the dates
+  let dataCompiledAt = new Date(
+    dataCompiled.getTime() + timeZoneOffsetInMinutes * 60000
+  );
+
+  let localSunrise = new Date(
+    sunriseDate.getTime() + timeZoneOffsetInMinutes * 60000
+  );
+  let localSunset = new Date(
+    sunsetDate.getTime() + timeZoneOffsetInMinutes * 60000
+  );
+
+  // Convert the local times to readable strings
+  let dataCompiledTime = dataCompiledAt.toLocaleString();
+  let localSunriseString = localSunrise.toLocaleString();
+  let localSunsetString = localSunset.toLocaleString();
+
   return (
     <div className="">
       {weatherData && (
@@ -19,32 +54,27 @@ const MainDisplay = ({ weatherData, city }) => {
               <WiMeteor size={33} />
               Pressure: {weatherData.main.pressure}hPa
             </p>
-            <p className="flex mt-1.5  gap-0.5 ">
+            <p className="flex mt-2  gap-0.5 ">
               <WiHumidity size={33} />
               Humidity: {weatherData.main.humidity}%
             </p>
-            <p className="flex mt-1.5  gap-0.5 ">
-              <WiHumidity size={33} />
-              Like: {weatherData.main.feels_like}
-            </p>
-            <p className="flex mt-1.5  gap-0.5 ">
-              <WiHumidity size={33} />
+            <p className="flex mt-2  gap-1 ">
+              <FaCloud size={27} />
               Cloudness: {weatherData.clouds.all}%
             </p>
-            <p className="flex mt-1.5  gap-0.5 ">
-              <WiHumidity size={33} />
-              Rain: {weatherData.rain}
+            <p className="flex mt-2  gap-1 ">
+              <LuCloudRainWind size={28} />
+              Rain: Null
             </p>
-            <p className="flex mt-1.5  gap-0.5 ">
-              <WiHumidity size={33} />
-              Snow: {weatherData.snow}
+            <p className="flex mt-2  gap-1 ">
+              <CiCloudRainbow size={28} />
+              Snow: Null
             </p>
-
-            <p className="flex mt-1.5  gap-0.5 ">
+            <p className="flex mt-2  gap-0.5 ">
               <WiLightning size={33} />
               Max-Temperature: {(300 - weatherData.main.temp_max).toFixed(1)}°C
             </p>
-            <p className="flex mt-1.5  gap-0.5 ">
+            <p className="flex mt-2  gap-0.5 ">
               <WiBarometer size={33} />
               Min-Temperature: {(300 - weatherData.main.temp_min).toFixed(1)}°C
             </p>
@@ -62,25 +92,32 @@ const MainDisplay = ({ weatherData, city }) => {
               </p>
             </div>
           </div>
-          <div className="third min-w-56 gap-4  md:mt-16">
+          <div className="third min-w-72 gap-4 md:-ml-6  md:mt-1">
             <p className="flex gap-0.5  ">
               <WiHurricaneWarning size={33} /> Latitude: {weatherData.coord.lat}
             </p>
-            <p className="flex gap-1  mt-1.5 ">
+            <p className="flex gap-1  mt-2 ">
               <TbWorldLongitude size={27} /> Longtude: {weatherData.coord.lon}
             </p>
-            <p className="flex gap-1  mt-1.5">
+            <p className="flex gap-1  mt-2 ">
+              <SiOpensearch size={27} /> Sea level: {weatherData.main.sea_level}
+              hPa
+            </p>
+            <p className="flex gap-1  mt-2">
               <WiDayWindy size={30} /> Speed of wind: {weatherData.wind.speed}
               m/s
             </p>
-            <p className="flex gap-1  mt-1.5">
-              <WiDayWindy size={30} /> Sunrise: {weatherData.sys.sunrise}UTC
+            <p className="flex gap-1  mt-2 gpp  also">
+              <FiSunrise size={27} /> Sunrise: {localSunriseString}
             </p>
-            <p className="flex gap-1  mt-1.5">
-              <WiDayWindy size={30} /> Sunset: {weatherData.sys.sunset}UTC
+            <p className="flex gap-1  mt-2 gpp">
+              <FiSunset size={27} /> Sunset: {localSunsetString}
+            </p>
+            <p className="flex gap-1  mt-2 gpp">
+              <MdOutlineCollectionsBookmark size={27} /> Data compiled At:{" "}
+              {dataCompiledTime}
             </p>
           </div>
-          {/* Add more weather details as needed */}
         </div>
       )}
     </div>

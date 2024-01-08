@@ -18,11 +18,13 @@ const App = () => {
         const data = await response.json();
         setWeatherData(data);
         console.log(data);
+        // alert(data);
         setNotFound(false);
       } else {
         setNotFound(true);
       }
     } catch (error) {
+      alert("Error fetching weather data:", error);
       console.error("Error fetching weather data:", error);
     }
   };
