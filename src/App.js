@@ -18,8 +18,8 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
-        console.log(data);
-        // alert(data);
+        // console.log(data);
+        alert(data.main.max_temp);
         setNotFound(false);
       } else {
         setNotFound(true);
@@ -32,8 +32,8 @@ const App = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20 ">
-        <MainDisplay weatherData={Data} city={city} />
+      <div className="w-full min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
+        <MainDisplay weatherData={weatherData} city={city} />
         <CityWeatherSearch
           onCitySelect={handleCitySelect}
           notFound={notFound}

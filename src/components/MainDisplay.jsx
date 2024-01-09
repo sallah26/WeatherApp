@@ -20,30 +20,27 @@ const MainDisplay = ({ weatherData, city }) => {
   let dataCompilation = weatherData.dt; //Time of this data been compiled
   let sunriseUnixTimestamp = weatherData.sys.sunrise; //Sunrise: 1704685350UTC
   let sunsetUnixTimestamp = weatherData.sys.sunset; // Sunset: 1704727191UTC
+
   // Convert UNIX timestamps to milliseconds
-  let dataCompiled = new Date(dataCompilation * 1000);
   let sunriseDate = new Date(sunriseUnixTimestamp * 1000);
   let sunsetDate = new Date(sunsetUnixTimestamp * 1000);
 
-  // Assuming a time zone offset for Ethiopian time (in minutes)
-  let timeZoneOffsetInMinutes = +180; // Ethiopia Standard Time (EAT) UTC+3
+  // Time zone offset for Ethiopian time (in milliseconds)
+  let timeZoneOffsetMilliseconds = 3 * 60 * 60 * 1000; // EAT (UTC+3) in milliseconds
 
   // Apply the time zone offset to the dates
-  let dataCompiledAt = new Date(
-    dataCompiled.getTime() + timeZoneOffsetInMinutes * 60000
-  );
-
   let localSunrise = new Date(
-    sunriseDate.getTime() + timeZoneOffsetInMinutes * 60000
+    sunriseDate.getTime() + timeZoneOffsetMilliseconds
   );
-  let localSunset = new Date(
-    sunsetDate.getTime() + timeZoneOffsetInMinutes * 60000
-  );
+  let localSunset = new Date(sunsetDate.getTime() + timeZoneOffsetMilliseconds);
 
   // Convert the local times to readable strings
-  let dataCompiledTime = dataCompiledAt.toLocaleString();
-  let localSunriseString = localSunrise.toLocaleString();
-  let localSunsetString = localSunset.toLocaleString();
+  let localSunriseString = localSunrise.toLocaleString("en-ET", {
+    timeZone: "Africa/Addis_Ababa",
+  });
+  let localSunsetString = localSunset.toLocaleString("en-ET", {
+    timeZone: "Africa/Addis_Ababa",
+  });
 
   return (
     <div className="">
@@ -62,14 +59,7 @@ const MainDisplay = ({ weatherData, city }) => {
               <FaCloud size={27} />
               Cloudness: {weatherData.clouds.all}%
             </p>
-            {/* <p className="flex items-center  gap-1 ">
-              <LuCloudRainWind size={28} />
-              Rain: Null
-            </p>
-            <p className="flex items-center  gap-1 ">
-              <CiCloudRainbow size={28} />
-              Snow: Null
-            </p> */}
+
             <p className="flex items-center gap-1 ">
               <WiDayWindy size={30} /> Speed of wind: {weatherData.wind.speed}
               m/s
@@ -89,12 +79,14 @@ const MainDisplay = ({ weatherData, city }) => {
           </div>
           <div className="second col-start-2 col-span-4 flex flex-col justify-center items-center">
             <div className="relative">
-              <FaCloud size={250} className="-mb-1" />
-              {/* <img src={iconUrl} className="-mb-14" alt="icon" width={350} /> */}
+              {/* <FaCloud size={250} className="-mb-1" /> */}
+              <img src={iconUrl} className="-mb-14" alt="icon" width={350} />
             </div>
             <div className="text-center">
               <p className="text-6xl font-bold">{weatherData.name}</p>
-              <p className="mt-1">The condition is like {weatherData.weather[0].description}</p>
+              <p className="mt-1">
+                The condition is like {weatherData.weather[0].description}
+              </p>
               <p className="flex mt-1 justify-center text-4xl font-mono">
                 <CiTempHigh size={48} />
                 {(300 - weatherData.main.temp).toFixed(1)}°C
@@ -112,16 +104,7 @@ const MainDisplay = ({ weatherData, city }) => {
               <SiOpensearch size={25} /> Sea level: {weatherData.main.sea_level}
               hPa
             </p>
-            {/* <p className="flex items-center gap-1  "> 
-              <SiOpensearch size={25} />
-              visibility: {weatherData.visibility / 1000}km
-            </p>
 
-            <p className="flex items-center gap-1  ">
-              <SiOpensearch size={25} /> Ground level:{" "}
-              {weatherData.main.grnd_level}
-              hPa
-            </p> */}
             <p className="flex items-center gap-1 ">
               <FiSunrise size={25} /> Sunrise: {localSunriseString}
             </p>
@@ -130,7 +113,7 @@ const MainDisplay = ({ weatherData, city }) => {
             </p>
             <p className="flex items-center gap-1 ">
               <MdOutlineCollectionsBookmark size={27} /> Data compiled At:{" "}
-              {dataCompiledTime}
+              {"today"}
             </p>
           </div>
         </div>
