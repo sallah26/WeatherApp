@@ -1,22 +1,25 @@
 import React from "react";
 import Icon from "./Icon";
 import { BsCloudSunFill, BsFillCloudsFill } from "react-icons/bs";
-import { FaCloud } from "react-icons/fa";
+import { FaCloud, FaSkyatlas } from "react-icons/fa";
 import { RiMistFill } from "react-icons/ri";
 import { IoSnow, IoThunderstormSharp } from "react-icons/io5";
 
 const MultipleIcons = () => {
   return (
     <>
-      <RiMistFill
-        size={380}
-        className={`absolute opacity-70 left-32 text-gray-600 top-20 z-auto`}
+      <FaSkyatlas
+        size={480}
+        className={`absolute opacity-70 left-10 text-gray-600 top-20 z-auto`}
       />
       <IoThunderstormSharp
         size={150}
         className={`absolute opacity-70 ml-20 left-96 text-gray-600 top-20 z-auto`}
       />
-
+      <BsFillCloudsFill
+        size={250}
+        className={`absolute opacity-70 ml-20 right-0 text-gray-600 top-2 z-auto`}
+      />
       <IoSnow
         size={160}
         className={`absolute opacity-70 left-96 ml-10 text-gray-600 top-96 z-auto App-logo`}
