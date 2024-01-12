@@ -22,7 +22,7 @@ const CityWeatherSearch = ({ onCitySelect, notFound }) => {
     onCitySelect(selectedCity); // Trigger weather fetch for the selected city
   };
   return (
-    <div className="md:mt-40">
+    <div className="md:mt-40 z-30">
       {notFound && (
         <p className="text-md text-red-600 w-2/3">
           Sorry, this city doesn't have data. please select near one!

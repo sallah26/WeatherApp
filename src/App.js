@@ -7,7 +7,7 @@ import Icon from "./components/Icon";
 import MultipleIcons from "./components/MultipleIcons";
 
 const App = () => {
-  const [weatherData, setWeatherData] = useState(Data[0]);
+  const [weatherData, setWeatherData] = useState();
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
   const apiKey = "b4ec2168bc9a991595d49a3b361958a0";
@@ -30,11 +30,14 @@ const App = () => {
       console.error("Error fetching weather data:", error);
     }
   };
+  console.log(weatherData === false);
+  console.log(Data);
+  console.log(Data);
 
   return (
     <>
       <div className="w-full  min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
-        <MainDisplay weatherData={weatherData} city={city} />
+        {/* <MainDisplay weatherData={Data} city={city} /> */}
         <MultipleIcons />
         <CityWeatherSearch
           onCitySelect={handleCitySelect}

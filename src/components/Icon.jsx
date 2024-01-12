@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCloud } from "react-icons/fa";
+import { BsCloudSunFill } from "react-icons/bs";
 
 const Icon = (props) => {
   // you
@@ -10,13 +11,20 @@ const Icon = (props) => {
   const Mleft = props.MarginLeft;
   const MTop = props.MarginTop;
   const Color = props.Color;
+  const Opacity = props.Opacity;
 
   return (
     // <div className="">
-    <FaCloud
-      size={Size}
-      className={`absolute opacity-50 ${MTop} ${Mleft} ${Color} z-auto`}
-    />
+    <>
+      <FaCloud
+        size={Size}
+        className={`absolute ${MTop} ${Mleft} ${Color} ${Opacity} z-auto`}
+      />
+      <BsCloudSunFill
+        size={Size}
+        className={`absolute ${MTop} ${Mleft} ${Color} ${Opacity} z-auto`}
+      />
+    </>
     // </div>
   );
 };
