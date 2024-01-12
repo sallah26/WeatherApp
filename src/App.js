@@ -3,9 +3,11 @@ import CityWeatherSearch from "./components/Search";
 import { useState } from "react";
 import MainDisplay from "./components/MainDisplay";
 import Data from "./api/Data";
+import Icon from "./components/Icon";
+import MultipleIcons from "./components/MultipleIcons";
 
 const App = () => {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState(Data[0]);
   const [city, setCity] = useState("");
   const [notFound, setNotFound] = useState(false);
   const apiKey = "b4ec2168bc9a991595d49a3b361958a0";
@@ -18,8 +20,7 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
-        // console.log(data);
-        alert(data.main.max_temp);
+        console.log(data);
         setNotFound(false);
       } else {
         setNotFound(true);
@@ -32,8 +33,9 @@ const App = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
+      <div className="w-full  min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
         <MainDisplay weatherData={weatherData} city={city} />
+        <MultipleIcons />
         <CityWeatherSearch
           onCitySelect={handleCitySelect}
           notFound={notFound}

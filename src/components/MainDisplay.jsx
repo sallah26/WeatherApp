@@ -14,6 +14,17 @@ import { SiOpensearch } from "react-icons/si";
 import { FiSunrise } from "react-icons/fi";
 import { FiSunset } from "react-icons/fi";
 import { MdOutlineCollectionsBookmark } from "react-icons/md";
+// For weather icons
+import { FaSkyatlas } from "react-icons/fa";
+import { BsFillCloudsFill } from "react-icons/bs";
+import { IoCloudSharp } from "react-icons/io5";
+import { BsCloudSunFill } from "react-icons/bs";
+import { FaCloudShowersHeavy } from "react-icons/fa";
+import { FaCloudSunRain } from "react-icons/fa";
+import { IoThunderstormSharp } from "react-icons/io5";
+import { IoSnow } from "react-icons/io5";
+import { RiMistFill } from "react-icons/ri";
+import Icons from "../api/Icons";
 
 const MainDisplay = ({ weatherData, city }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`;
@@ -41,11 +52,11 @@ const MainDisplay = ({ weatherData, city }) => {
   let localSunsetString = localSunset.toLocaleString("en-ET", {
     timeZone: "Africa/Addis_Ababa",
   });
-
+  console.log(weatherData);
   return (
-    <div className="">
-      {weatherData && (
-        <div className="grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-6">
+    <div className="z-20">
+      {weatherData ? (
+        <div className="grid grid-cols-1  items-center justify-center md:grid-cols-2 lg:grid-cols-6">
           <div className="first flex flex-col gap-3 justify-center min-w-56">
             <p className="flex items-center  gap-0.5 ">
               <WiMeteor size={33} />
@@ -116,7 +127,10 @@ const MainDisplay = ({ weatherData, city }) => {
               {"today"}
             </p>
           </div>
+          {Icons}
         </div>
+      ) : (
+        <p className="text-4xl text-red-700">Loading the data failed...</p>
       )}
     </div>
   );

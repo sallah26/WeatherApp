@@ -1,4 +1,4 @@
-const Data = {
+const Data = [{
   coord: {
     lon: 10.99,
     lat: 44.34,
@@ -46,5 +46,5 @@ const Data = {
   id: 3163858,
   name: "Zocca",
   cod: 200,
-};
+}];
 export default Data;
