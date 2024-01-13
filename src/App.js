@@ -6,10 +6,53 @@ import Data from "./api/Data";
 import Icon from "./components/Icon";
 import MultipleIcons from "./components/MultipleIcons";
 
+// const App = () => {
+//   const [weatherData, setWeatherData] = useState();
+//   const [city, setCity] = useState("");
+//   const [notFound, setNotFound] = useState(false);
+//   const apiKey = "b4ec2168bc9a991595d49a3b361958a0";
+
+//   const handleCitySelect = async (city) => {
+//     try {
+//       const response = await fetch(
+//         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+//       );
+//       if (response.ok) {
+//         const data = await response.json();
+//         setWeatherData(data);
+//         console.log(data);
+//         setNotFound(false);
+//       } else {
+//         setNotFound(true);
+//       }
+//     } catch (error) {
+//       alert("Error fetching weather data:", error);
+//       console.error("Error fetching weather data:", error);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="w-full  min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
+//         <MainDisplay weatherData={weatherData} city={city} />
+//         <MultipleIcons />
+//         <CityWeatherSearch
+//           onCitySelect={handleCitySelect}
+//           notFound={notFound}
+//         />
+//       </div>
+//     </>
+//   );
+// };
+
+// export default App;
+
+// ... (your existing imports)
+
 const App = () => {
-  const [weatherData, setWeatherData] = useState();
-  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null); // Initialize with null
   const [notFound, setNotFound] = useState(false);
+  const [error, setError] = useState(null);
   const apiKey = "b4ec2168bc9a991595d49a3b361958a0";
 
   const handleCitySelect = async (city) => {
@@ -17,28 +60,41 @@ const App = () => {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
       );
+
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
-        console.log(data);
         setNotFound(false);
+        console.log(data);
+        const {
+          name,
+          main,
+          weather,
+          wind,
+          sys: { sunrise, sunset },
+        } = weatherData;
       } else {
         setNotFound(true);
+        if (!response.ok && response.status === 0) {
+          setError("Network error. Please check your internet connection.");
+        } else {
+          // You can customize this part based on the specific error conditions
+          setError(`Error: ${error.message}`);
+        }
       }
     } catch (error) {
-      alert("Error fetching weather data:", error);
-      console.error("Error fetching weather data:", error);
+      console.error("Sallah Error fetching weather data:", error);
+      // Handle error by setting an error message in state if needed
+      setNotFound(true);
     }
   };
-  console.log(weatherData === false);
-  console.log(Data);
-  console.log(Data);
 
   return (
     <>
       <div className="w-full  min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
-        {/* <MainDisplay weatherData={Data} city={city} /> */}
+        {/* <MainDisplay weatherData={weatherData} error={error} /> */}
         <MultipleIcons />
+        {weatherData && <div>{weatherData}</div>}
         <CityWeatherSearch
           onCitySelect={handleCitySelect}
           notFound={notFound}
