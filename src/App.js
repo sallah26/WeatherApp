@@ -5,6 +5,7 @@ import MainDisplay from "./components/MainDisplay";
 import Data from "./api/Data";
 import Icon from "./components/Icon";
 import MultipleIcons from "./components/MultipleIcons";
+import FavouriteCities from "./components/FavouriteCities";
 
 // const App = () => {
 //   const [weatherData, setWeatherData] = useState();
@@ -92,13 +93,14 @@ const App = () => {
   return (
     <>
       <div className="w-full  min-h-screen flex flex-col items-center text-slate-200 bg-gray-900 p-4  md:px-32 md:py-20">
-        {/* <MainDisplay weatherData={weatherData} error={error} /> */}
+        <MainDisplay weatherData={weatherData} error={error} />
         <MultipleIcons />
-        {weatherData && <div>{weatherData}</div>}
+
         <CityWeatherSearch
           onCitySelect={handleCitySelect}
           notFound={notFound}
         />
+        <FavouriteCities Data={Data} />
       </div>
     </>
   );

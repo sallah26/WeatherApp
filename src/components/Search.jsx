@@ -22,16 +22,16 @@ const CityWeatherSearch = ({ onCitySelect, notFound }) => {
     onCitySelect(selectedCity); // Trigger weather fetch for the selected city
   };
   return (
-    <div className="md:mt-40 z-30">
+    <div className=" min-w-80 max-w-[500px] md:mt-40 z-30 text-center flex flex-col items-center">
       {notFound && (
-        <p className="text-md text-red-600 w-2/3">
+        <p className="text-lg text-red-500 text-center ">
           Sorry, this city doesn't have data. please select near one!
         </p>
       )}
-      <div className="min-w-72 h-40 p-2 text-md overflow-y-scroll roundedm-sm border-2 border-slate-600 rounded-xl ">
+      <div className="text-start w-full h-40 p-2 text-md overflow-y-scroll  roundedm-sm border-2 border-slate-600 rounded-xl ">
         <input
           type="text"
-          className="w-full outline-none border-0 border-b-2 bg-transparent  border-slate-400 p-1  h-9 bg-slate-800 border-2 text-white"
+          className="w-full outline-none border-0 border-b-2 bg-transparent  border-slate-600 p-1  h-9 bg-slate-800 text-white"
           placeholder="Search for the city..."
           value={city}
           onChange={handleCityChange}
