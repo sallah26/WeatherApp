@@ -18,7 +18,7 @@ import FavouriteCities from "./components/FavouriteCities";
 //       const response = await fetch(
 //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 //       );ose custome directions
-//here we need to check those attributes after those issues are deleted then we will add t
+//here we need to check those attributes after those issues are deleted then we will add they will be effective from my own attributes
 //       if (response.ok) {
 //         const data = await response.json();
 //         setWeatherData(data);
