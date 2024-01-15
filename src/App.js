@@ -18,6 +18,7 @@ import FavouriteCities from "./components/FavouriteCities";
 //       const response = await fetch(
 //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 //       );
+//here we need to check those attributes
 //       if (response.ok) {
 //         const data = await response.json();
 //         setWeatherData(data);
