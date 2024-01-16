@@ -16,6 +16,9 @@ import FavouriteCities from "./components/FavouriteCities";
 //   const handleCitySelect = async (city) => {
 //     try {
 //     try {
+//     try {
+//     try {
+//     try {
 //       const response = await fetch(
 //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 //       );ose custome directionsappend sa
