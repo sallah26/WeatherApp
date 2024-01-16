@@ -12,7 +12,7 @@ import FavouriteCities from "./components/FavouriteCities";
 //   const [city, setCity] = useState("");
 //   const [notFound, setNotFound] = useState(false);
 //   const apiKey = "b4ec2168bc9a991595d49a3b361958a0";
-
+//123
 //   const handleCitySelect = async (city) => {
 //     try {
 //       const response = await fetch(
